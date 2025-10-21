@@ -20,39 +20,39 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
 
   const handleCreateCheckout = async () => {
     try {
-      console.log('Starting checkout process...')
+      console.log('Iniciando proceso de checkout...')
 
       // Snapshot del carrito antes de crear la orden (el hook limpia el carrito)
       try {
         sessionStorage.setItem('checkout_cart', JSON.stringify({ items: state.items, total: state.total }))
       } catch {}
 
-      console.log('Calling checkout function...')
+      console.log('Llamando función checkout...')
       const order = await checkout({
         currencyCode: currencyCode
       })
 
-      console.log('Order created:', order)
-      console.log('About to save order to sessionStorage...')
+      console.log('Orden creada:', order)
+      console.log('A punto de guardar orden en sessionStorage...')
       
       // Guardar orden en sessionStorage para la página de checkout
       try {
         sessionStorage.setItem('checkout_order', JSON.stringify(order))
         sessionStorage.setItem('checkout_order_id', String(order.order_id))
-        console.log('Order saved to sessionStorage')
+        console.log('Orden guardada en sessionStorage')
       } catch (e) {
-        console.error('Error saving to sessionStorage:', e)
+        console.error('Error guardando en sessionStorage:', e)
       }
 
-      console.log('Closing sidebar...')
+      console.log('Cerrando sidebar...')
       onClose()
       
-      console.log('Navigating to /checkout...')
+      console.log('Navegando a /checkout...')
       navigate('/checkout')
-      console.log('Navigation call completed')
+      console.log('Llamada de navegación completada')
     } catch (error) {
       // El error ya es manejado por el hook useCheckout
-      console.error('Error in handleCreateCheckout:', error)
+      console.error('Error en handleCreateCheckout:', error)
     }
   }
 
@@ -64,10 +64,10 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
         <div className="flex flex-col h-full">
           <SheetHeader className="p-6 border-b">
             <div className="flex items-center justify-between">
-              <SheetTitle>Shopping Cart</SheetTitle>
+              <SheetTitle>Carrito de Compras</SheetTitle>
             </div>
             <div id="cart-description" className="sr-only">
-              Review and modify the products in your shopping cart
+              Revisa y modifica los productos en tu carrito de compras
             </div>
           </SheetHeader>
 
@@ -75,13 +75,13 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
             <div className="flex-1 flex items-center justify-center p-6">
               <div className="text-center">
                 <h3 className="text-lg font-medium text-foreground mb-2">
-                  Your cart is empty
+                  Tu carrito está vacío
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Add some products to start your purchase
+                  Agrega algunos productos para comenzar tu compra
                 </p>
                 <Button onClick={onClose} variant="outline">
-                  Continue Shopping
+                  Continuar Comprando
                 </Button>
               </div>
             </div>
@@ -102,7 +102,7 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
                             />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center text-muted-foreground text-xs">
-                              No image
+                              Sin imagen
                             </div>
                           )}
                         </div>
@@ -171,7 +171,7 @@ export const CartSidebar = ({ isOpen, onClose }: CartSidebarProps) => {
                   onClick={handleCreateCheckout} 
                   disabled={isCreatingOrder}
                 >
-                  {isCreatingOrder ? 'Processing...' : 'Checkout'}
+                  {isCreatingOrder ? 'Procesando...' : 'Proceder al Pago'}
                 </Button>
               </div>
             </>

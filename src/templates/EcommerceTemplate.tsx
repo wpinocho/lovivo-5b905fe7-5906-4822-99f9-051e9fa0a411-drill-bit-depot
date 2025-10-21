@@ -6,7 +6,7 @@ import { FloatingCart } from '@/components/FloatingCart'
 import { ProfileMenu } from '@/components/ProfileMenu'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
-import { ShoppingCart, Drill } from 'lucide-react'
+import { ShoppingCart, Drill, Phone, Mail, MapPin } from 'lucide-react'
 import { useCartUI } from '@/components/CartProvider'
 import { useCart } from '@/contexts/CartContext'
 
@@ -43,8 +43,8 @@ export const EcommerceTemplate = ({
               <Drill className="h-6 w-6" />
             </div>
             <div>
-              <div className="font-bold text-xl text-foreground">DrillBits Pro</div>
-              <div className="text-xs text-muted-foreground">Professional Tools</div>
+              <div className="font-bold text-xl text-foreground">BrocasPro</div>
+              <div className="text-xs text-muted-foreground">Herramientas Profesionales</div>
             </div>
           </Link>
 
@@ -55,13 +55,13 @@ export const EcommerceTemplate = ({
                 to="/" 
                 className="text-foreground/80 hover:text-primary font-medium transition-colors"
               >
-                Home
+                Inicio
               </Link>
               <Link 
                 to="/blog" 
                 className="text-foreground/80 hover:text-primary font-medium transition-colors"
               >
-                Blog
+                Guías y Consejos
               </Link>
             </nav>
           </div>
@@ -76,7 +76,7 @@ export const EcommerceTemplate = ({
                 size="icon"
                 onClick={openCart}
                 className="relative border-2 hover:border-primary hover:text-primary"
-                aria-label="View cart"
+                aria-label="Ver carrito"
               >
                 <ShoppingCart className="h-5 w-5" />
                 {totalItems > 0 && (
@@ -112,48 +112,66 @@ export const EcommerceTemplate = ({
                 <Drill className="h-6 w-6" />
               </div>
               <div>
-                <div className="font-bold text-xl">DrillBits Pro</div>
-                <div className="text-sm text-background/70">Professional Tools</div>
+                <div className="font-bold text-xl">BrocasPro</div>
+                <div className="text-sm text-background/70">Herramientas Profesionales</div>
               </div>
             </div>
             <p className="text-background/70 mb-4 max-w-md">
-              Your trusted source for professional-grade drill bits. Quality tools for professionals and DIY enthusiasts.
+              Tu tienda de confianza para brocas de calidad profesional. Hacemos que tus proyectos sean más fáciles y exitosos.
             </p>
             <SocialLinks />
           </div>
 
-          {/* Quick Links */}
+          {/* Enlaces Rápidos */}
           <div>
-            <h3 className="font-semibold mb-4 text-background">Quick Links</h3>
+            <h3 className="font-semibold mb-4 text-background">Enlaces Rápidos</h3>
             <div className="space-y-2">
               <Link 
                 to="/" 
                 className="block text-background/70 hover:text-primary transition-colors"
               >
-                Home
+                Inicio
               </Link>
               <Link 
                 to="/blog" 
                 className="block text-background/70 hover:text-primary transition-colors"
               >
-                Blog
+                Guías y Consejos
+              </Link>
+              <Link 
+                to="/my-orders" 
+                className="block text-background/70 hover:text-primary transition-colors"
+              >
+                Mis Pedidos
               </Link>
             </div>
           </div>
 
-          {/* Customer Service */}
+          {/* Atención al Cliente */}
           <div>
-            <h3 className="font-semibold mb-4 text-background">Customer Service</h3>
-            <div className="space-y-2 text-background/70 text-sm">
-              <p>Email: support@drillbitspro.com</p>
-              <p>Phone: 1-800-DRILL-BIT</p>
-              <p>Mon-Fri: 9AM - 6PM EST</p>
+            <h3 className="font-semibold mb-4 text-background">Atención al Cliente</h3>
+            <div className="space-y-3 text-background/70 text-sm">
+              <div className="flex items-start space-x-2">
+                <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <div>
+                  <p className="font-medium text-background">55 1234 5678</p>
+                  <p className="text-xs">Lun-Vie: 9AM - 6PM</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-2">
+                <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <p>soporte@brocaspro.mx</p>
+              </div>
+              <div className="flex items-start space-x-2">
+                <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
+                <p>Envíos a toda la República Mexicana</p>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t border-background/20 text-center text-background/70">
-          <p>&copy; 2024 DrillBits Pro. All rights reserved. Professional quality guaranteed.</p>
+          <p>&copy; 2024 BrocasPro. Todos los derechos reservados. Calidad profesional garantizada.</p>
         </div>
       </div>
     </div>

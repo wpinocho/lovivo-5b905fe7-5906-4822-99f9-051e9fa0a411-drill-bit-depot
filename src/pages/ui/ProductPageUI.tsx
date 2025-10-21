@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Skeleton } from "@/components/ui/skeleton"
 import { EcommerceTemplate } from "@/templates/EcommerceTemplate"
-import { ShoppingCart, ArrowLeft, Plus, Minus } from "lucide-react"
+import { ShoppingCart, ArrowLeft, Plus, Minus, Shield, Truck, Award } from "lucide-react"
 import { Link } from "react-router-dom"
 
 import type { Product, ProductVariant } from "@/lib/supabase"
@@ -83,12 +83,12 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
     return (
       <EcommerceTemplate>
         <div className="text-center py-16">
-            <h1 className="text-4xl font-bold mb-4">Product not found</h1>
-            <p className="text-muted-foreground mb-8">The product you're looking for doesn't exist or has been deleted.</p>
+            <h1 className="text-4xl font-bold mb-4">Producto no encontrado</h1>
+            <p className="text-muted-foreground mb-8">El producto que buscas no existe o ha sido eliminado.</p>
             <Button asChild>
               <Link to="/">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to home
+                Volver al inicio
               </Link>
             </Button>
         </div>
@@ -119,16 +119,37 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
                 {logic.formatMoney(logic.currentPrice)}
               </span>
               {logic.currentCompareAt && logic.currentCompareAt > logic.currentPrice && (
-                <span className="text-lg text-muted-foreground line-through">
-                  {logic.formatMoney(logic.currentCompareAt)}
-                </span>
+                <>
+                  <span className="text-lg text-muted-foreground line-through">
+                    {logic.formatMoney(logic.currentCompareAt)}
+                  </span>
+                  <Badge variant="destructive" className="text-sm">
+                    Ahorra {Math.round((1 - logic.currentPrice / logic.currentCompareAt) * 100)}%
+                  </Badge>
+                </>
               )}
+            </div>
+          </div>
+
+          {/* Beneficios del producto */}
+          <div className="bg-muted/50 rounded-lg p-4 space-y-2">
+            <div className="flex items-center space-x-2 text-sm">
+              <Shield className="h-4 w-4 text-primary" />
+              <span>Garantía de calidad profesional</span>
+            </div>
+            <div className="flex items-center space-x-2 text-sm">
+              <Truck className="h-4 w-4 text-primary" />
+              <span>Envío gratis en pedidos +$500</span>
+            </div>
+            <div className="flex items-center space-x-2 text-sm">
+              <Award className="h-4 w-4 text-primary" />
+              <span>30 días de garantía de satisfacción</span>
             </div>
           </div>
 
           {logic.product.description && (
             <div>
-              <h3 className="font-semibold mb-2">Description</h3>
+              <h3 className="font-semibold mb-2">Descripción</h3>
               <div 
                 className="text-muted-foreground prose prose-sm max-w-none"
                 dangerouslySetInnerHTML={{ __html: logic.product.description }}
@@ -158,7 +179,7 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
                         >
                           {value}
                           {!isAvailable && (
-                            <span className="ml-1 text-xs">(Out of stock)</span>
+                            <span className="ml-1 text-xs">(Agotado)</span>
                           )}
                         </Button>
                       )
@@ -173,7 +194,7 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
               <Label htmlFor="quantity" className="text-base font-medium">
-                Quantity
+                Cantidad
               </Label>
               <div className="flex items-center space-x-2">
                 <Button
@@ -210,11 +231,11 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
                 size="lg"
               >
                 <ShoppingCart className="mr-2 h-4 w-4" />
-                {logic.inStock ? 'Add to cart' : 'Out of stock'}
+                {logic.inStock ? 'Agregar al carrito' : 'Agotado'}
               </Button>
               
               {!logic.inStock && (
-                <Badge variant="secondary">Out of stock</Badge>
+                <Badge variant="secondary">Agotado</Badge>
               )}
             </div>
           </div>
@@ -223,14 +244,14 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
           {logic.matchingVariant && (
             <Card>
               <CardContent className="pt-6">
-                <h3 className="font-semibold mb-2">Product information</h3>
+                <h3 className="font-semibold mb-2">Información del producto</h3>
                 <div className="space-y-2 text-sm text-muted-foreground">
                   <div className="flex justify-between">
                     <span>SKU:</span>
                     <span>{logic.matchingVariant.sku || 'N/A'}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Available stock:</span>
+                    <span>Stock disponible:</span>
                     <span>{logic.matchingVariant.inventory_quantity || 0}</span>
                   </div>
                 </div>
@@ -246,7 +267,7 @@ export const ProductPageUI = ({ logic }: ProductPageUIProps) => {
             className="w-full"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Continue shopping
+            Seguir comprando
           </Button>
         </div>
       </div>

@@ -21,7 +21,7 @@ export const CollectionCard = ({ collection, onViewProducts }: CollectionCardPro
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-muted-foreground text-sm">
-              No image
+              Sin imagen
             </div>
           )}
           
@@ -36,7 +36,7 @@ export const CollectionCard = ({ collection, onViewProducts }: CollectionCardPro
             </h3>
             {collection.featured && (
               <span className="bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full font-bold whitespace-nowrap ml-2">
-                Featured
+                Destacado
               </span>
             )}
           </div>
@@ -52,7 +52,7 @@ export const CollectionCard = ({ collection, onViewProducts }: CollectionCardPro
             className="w-full font-semibold group/btn border-2 hover:border-primary hover:text-primary"
             onClick={() => onViewProducts(collection.id)}
           >
-            View Products
+            Ver Productos
             <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
           </Button>
         </div>
